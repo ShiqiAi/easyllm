@@ -103,6 +103,7 @@ class ChatCompletion:
         stream: bool = False,
         frequency_penalty: Optional[float] = 1.0,
         debug: bool = False,
+        server_kwargs={}
     ) -> Dict[str, Any]:
         """
         Creates a new chat completion for the provided messages and parameters.
@@ -162,7 +163,7 @@ You can also use existing prompt builders by importing them from easyllm.prompt_
             url = api_base
 
         # create the client
-        client = InferenceClient(url, token=api_key)
+        client = InferenceClient(url, token=api_key, **server_kwargs)
 
         # create stop sequences
         if isinstance(request.stop, list):
@@ -284,6 +285,7 @@ class Completion:
         logprobs: bool = False,
         echo: bool = False,
         debug: bool = False,
+        server_kwargs:Dict[str, Any] = {}
     ) -> Dict[str, Any]:
         """
         Creates a new completion for the provided prompt and parameters.
@@ -355,7 +357,7 @@ You can also use existing prompt builders by importing them from easyllm.prompt_
             url = api_base
 
         # create the client
-        client = InferenceClient(url, token=api_key)
+        client = InferenceClient(url, token=api_key, **server_kwargs)
 
         # create stop sequences
         if isinstance(request.stop, list):
